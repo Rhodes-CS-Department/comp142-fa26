@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Wheel of Fortune is a classic TV show.
  * Contestants must guess letters to fill in a phrase.
  */
-public class WheelOfFortune {
+public class WheelOfFortuneAI {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a secret phrase: ");
