@@ -54,6 +54,14 @@ public class Car {
         color = Color.RED;
     }
 
+    public Car(int speed, int row, int col, char direction, Color color) {
+        this.speed = speed;
+        this.row = row;
+        this.col = col;
+        this.direction = direction;
+        this.color = color;
+    }
+
     /**
      * Return the current speed of the car.
      */
