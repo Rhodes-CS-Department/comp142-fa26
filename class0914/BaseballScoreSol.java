@@ -1,3 +1,4 @@
+// this is the code written in class.
 package class0914;
 
 public class BaseballScore {
