@@ -190,8 +190,10 @@ public class Engine {
         }
 
         int[] handPoints = new int[4];
+        List<List<Card>> previousTricks = new ArrayList<>();
         for (int t = 0; t < 13; t++) {
-            List<Card> trick = playTrick(leader);
+            List<Card> trick = playTrick(leader, previousTricks);
+            previousTricks.add(trick);
             int winner = (leader + Rules.trickWinner(trick)) % 4;
             handPoints[winner] += Rules.trickPoint(trick);
             leader = winner;
@@ -215,16 +217,17 @@ public class Engine {
 
     /**
      * Plays one trick, starting with the given leader, and returns the cards
-     * played, in the order they were played.
+     * played, in the order they were played. previousTricks holds the tricks
+     * already played in this hand.
      */
-    private List<Card> playTrick(int leader) {
+    private List<Card> playTrick(int leader, List<List<Card>> previousTricks) {
         List<Card> trick = new ArrayList<>();
         gui.draw(new GameState(trick, leader), hands);
 
         for (int i = 0; i < 4; i++) {
             int p = (leader + i) % 4;
             List<Card> hand = hands.get(p);
-            GameState state = new GameState(trick, leader);
+            GameState state = new GameState(trick, leader, previousTricks);
             Card card = players[p].play(state, new ArrayList<>(hand));
             if (!hand.contains(card) || !Rules.playValid(state, hand, card)) {
                 illegalMove(p, "made an illegal play (" + card + ")");
