@@ -7,7 +7,7 @@ package hearts;
  * - 13 is a king,
  * - 14 is an ace.
  */
-public class Card {
+public class Card implements Comparable<Card> {
     private int rank;
     private Suit suit;
 
@@ -41,6 +41,17 @@ public class Card {
      */
     public int hashCode() {
         return 13 * suit.ordinal() + rank;
+    }
+
+    /**
+     * Orders cards by suit (in the order the Suit enum lists them), and then
+     * by rank within a suit.
+     */
+    public int compareTo(Card other) {
+        if (suit != other.suit) {
+            return suit.compareTo(other.suit);
+        }
+        return rank - other.rank;
     }
 
     /**

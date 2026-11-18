@@ -1,6 +1,7 @@
 package hearts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -121,6 +122,9 @@ public class Engine {
                 hands.get(p).add(deck.draw());
             }
         }
+        for (int p = 0; p < 4; p++) {
+            Collections.sort(hands.get(p));
+        }
     }
 
     /**
@@ -148,6 +152,9 @@ public class Engine {
                 hands.get(p).remove(c);
                 hands.get((p + offset) % 4).add(c);
             }
+        }
+        for (int p = 0; p < 4; p++) {
+            Collections.sort(hands.get(p));
         }
     }
 
